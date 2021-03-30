@@ -45,7 +45,7 @@ $options = [
 
 $app->post('/api/login', function (Request $request, Response $response, $args) {
     $issuedAt = time();
-    $expirationTime = $issuedAt + 60000;
+    $expirationTime = $issuedAt + 60;
     $payload = array(
         'userid' => "12345",
         'email' => "emmanuel.maurice@gmail.com",
@@ -59,6 +59,22 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     return $response;
 });
 
+
+
+
+$app->get('/api/catalogue', function (Request $request, Response $response, $args) {
+    $flux = '[
+        {"ref":"x1","titre":"linux","prix":10},
+        {"ref":"x2,","titre":"windows","prix":15},
+        {"ref":"x3","titre":"angular","prix":5}
+    ]';
+    
+    $response = $response
+    ->withHeader("Content-Type", "application/json;charset=utf-8");
+    
+    $response->getBody()->write($flux);
+    return $response;
+});
 
 
 $app->get('/api/client/{id}', function (Request $request, Response $response, $args) {
