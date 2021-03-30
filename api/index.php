@@ -6,11 +6,24 @@ use Slim\Factory\AppFactory;
 use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
  
 $app = AppFactory::create();
 
 const JWT_SECRET = "makey1234567";
+
+
+
+function addCorsHeaders (Response $response) : Response {
+
+    $response =  $response
+    ->withHeader("Access-Control-Allow-Origin", 'http://localhost')
+    ->withHeader("Access-Control-Allow-Headers" ,'Content-Type, Authorization')
+    ->withHeader("Access-Control-Allow-Methods", 'GET, POST, PUT, PATCH, DELETE,OPTIONS')
+    ->withHeader ("Access-Control-Expose-Headers" , "Authorization");
+
+    return $response;
+}
 
 
 // Middleware de validation du Jwt
@@ -45,6 +58,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     $response = $response->withHeader("Authorization", "Bearer {$token_jwt}");
     return $response;
 });
+
 
 
 $app->get('/api/client/{id}', function (Request $request, Response $response, $args) {
