@@ -7,6 +7,7 @@ use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
 
 require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/bootstrap.php';
  
 $app = AppFactory::create();
 
@@ -43,7 +44,7 @@ $options = [
     }
 ];
 
-$app->post('/api/login', function (Request $request, Response $response, $args) {
+$app->post('/api/login', function (Request $request, Response $response, $args) {    
     $issuedAt = time();
     $expirationTime = $issuedAt + 60;
     $payload = array(
@@ -63,16 +64,29 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
 
 
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
-    $flux = '[
-        {"ref":"x1","titre":"linux","prix":10},
-        {"ref":"x2,","titre":"windows","prix":15},
-        {"ref":"x3","titre":"angular","prix":5}
-    ]';
     
+    global $entityManager;
+
+    $catalogueRepository = $entityManager->getRepository('Catalogue');
+    $catalogue = $catalogueRepository->findAll();
+
+
+    $data = [];
+
+    foreach ($catalogue as $e) {
+        $elem = [];
+        $elem ["ref"] = $e->getRef();
+        $elem ["titre"] = $e->getTitre ();
+        $elem ["prix"] = $e->getPrix ();
+
+        array_push ($data,$elem);
+    }
+
     $response = $response
     ->withHeader("Content-Type", "application/json;charset=utf-8");
+
     
-    $response->getBody()->write($flux);
+    $response->getBody()->write(json_encode($data));
     return $response;
 });
 
@@ -85,6 +99,7 @@ $app->get('/api/client/{id}', function (Request $request, Response $response, $a
     $response->getBody()->write(json_encode ($array));
     return $response;
 });
+
 
 $app->get('/hello/{name}', function (Request $request, Response $response, $args) {
     $array = [];
