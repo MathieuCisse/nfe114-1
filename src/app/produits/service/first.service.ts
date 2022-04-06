@@ -9,9 +9,9 @@ import { environment } from '../../../environments/environment'
 })
 export class FirstService {
 
-  
-  constructor(private httpClient : HttpClient) { 
-    this.datas = new Array<string> ();  
+
+  constructor(private httpClient : HttpClient) {
+    this.datas = new Array<string> ();
   }
 
   cpt : number = 0;
