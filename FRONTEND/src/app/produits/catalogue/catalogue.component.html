@@ -1,27 +1,5 @@
 <p>catalogue works!</p>
-
-<button (click)="onClick()"> Click</button>
-
-<br/>
-<div *ngFor = "let t of tabData">
-    {{t}}
-</div>
-<br/>
-<div  *ngFor = "let o of observable2$ | async">
-    {{o}}
-</div>
-<br/>
-<div>
-    {{observable3$ | async}}
-</div>
-<br/>
-<div *ngFor = "let l of tabLivre">
-    {{l.titre}} / {{l.prix}}  
-</div>
-
-<br/>
-<button (click)="onClickBackeng()"> Get Backend</button>
-
-<div  *ngFor = "let o of observable5$ | async">
+<input #filterInput type="text" />
+<div *ngFor = "let o of observable5$ | async">
     {{o.titre}} / {{o.prix}} - <button (click)="addPanier(o.ref)">Ajout Panier</button>
 </div>

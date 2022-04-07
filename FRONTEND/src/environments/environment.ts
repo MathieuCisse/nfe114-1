@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   postLogin : '/api/login',
-  catalogue : '/api/catalog'
+  catalogue : '/api/catalog',
+  filterCatalogue : '/api/catalog/filter'
 };
 
 /*

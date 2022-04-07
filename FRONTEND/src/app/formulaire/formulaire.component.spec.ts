@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FormulaireComponent } from './formulaire.component';
+import {FormulaireComponent} from './formulaire.component';
 
 describe('FormulaireComponent', () => {
   let component: FormulaireComponent;

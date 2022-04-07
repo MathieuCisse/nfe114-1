@@ -1,4 +1,4 @@
-import { ApiIntercepteur } from './api-intercepteur';
+import {ApiIntercepteur} from './api-intercepteur';
 
 describe('ApiIntercepteur', () => {
   it('should create an instance', () => {

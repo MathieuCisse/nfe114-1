@@ -6,8 +6,8 @@ import {
   HttpRequest,
   HttpResponse
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, tap} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Injectable()

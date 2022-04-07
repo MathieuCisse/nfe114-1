@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-formulaire',
@@ -14,7 +14,7 @@ export class FormulaireComponent implements OnInit {
   regEx3 = /^[0-9]{5}$/;
 
   @Input() erreur : boolean = true;
-  
+
   nom : string = "";
   prenom : string = "";
   ville : string = "";
@@ -22,7 +22,7 @@ export class FormulaireComponent implements OnInit {
   adresse : string = "";
 
   error : boolean = true;
-  
+
   ngOnInit(): void {
   }
 

@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DetailComponent } from './detail/detail.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DetailComponent} from './detail/detail.component';
+import {CatalogueComponent} from './catalogue/catalogue.component';
 
-import { RouterModule, Routes } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 const appRoutes : Routes = [
   { path: 'catalogue', component: CatalogueComponent },

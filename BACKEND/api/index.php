@@ -94,13 +94,34 @@ $app->get('/api/user',
 
 $app->get('/api/catalog',
     function(Request $request, Response $response) {
-        $products = file_get_contents("./bouchon/products.json");
+        $products = file_get_contents("../bouchon/products.json");
 
         if($products) {
             $response->getBody()->write(json_encode($products));
         } else {
             $response->withStatus(404);
         }
+
+        return $response;
+    });
+
+$app->get('/api/catalog/{filter}',
+    function(Request $request, Response $response, $args) {
+        $products = file_get_contents("../bouchon/products.json");
+
+        // s'il n'y a pas d'erreur dans la récupération du bouchon
+        if($products) {
+
+            $filterValue = (string)$args['filter'];
+            array_filter(json_encode($products, true), function($value) use ($filterValue) {
+                // si le filtre est similaire à plus de 50% au titre du produit alors on le garde
+                return similar_text((string)$value['titre'], $filterValue) > 50;
+            })
+            $response->getBody()->write(json_encode($products));
+        } else {
+            $response->withStatus(404);
+        }
+
 
         return $response;
     });
