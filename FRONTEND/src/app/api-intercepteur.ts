@@ -39,7 +39,7 @@ export class ApiIntercepteur implements HttpInterceptor {
             this.router.navigate(['/client/signin']);
             break;
           default :
-            console.log ('ERROR !!!!!');
+            console.log("erreur");
         }
       }
     ) );

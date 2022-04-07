@@ -6,8 +6,8 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes : Routes = [
-  {path:'catalogue',component:CatalogueComponent},
-  {path: 'detail/:id', component: DetailComponent },
+  { path: 'catalogue', component: CatalogueComponent },
+  { path: 'detail/:id', component: DetailComponent },
 ]
 
 
